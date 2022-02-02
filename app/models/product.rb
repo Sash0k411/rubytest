@@ -6,6 +6,11 @@ class Product < ApplicationRecord
     message: 'must be a URL for GIF, JPG or PNG image.'
   }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+  validates :discount, numericality: { greater_than_or_equal_to: 0}
+  def price_with_discount
+    return self.price if self.discount.nil? || self.discount.zero?
+    self.price - (self.price * self.discount / 100)
+  end
 end
 
 class Product < ApplicationRecord
