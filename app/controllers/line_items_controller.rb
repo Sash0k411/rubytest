@@ -24,13 +24,12 @@ class LineItemsController < ApplicationController
   # POST /line_items or /line_items.json
   def create
     product = Product.find(params[:product_id])
-    @line_item = @cart.line_items.build(product: product)
-  #  @line_item = @cart.add_product(product)
+    # @line_item = @cart.line_items.build(product: product)
+    @line_item = @cart.add_product(product)
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart,
-          notice: 'Line item was successfully created.' }
+        format.html { redirect_to @line_item.cart }
         format.json { render :show,
           status: :created, location: @line_item }
         else
@@ -56,12 +55,18 @@ class LineItemsController < ApplicationController
 
   # DELETE /line_items/1 or /line_items/1.json
   def destroy
-    @line_item.destroy
-
+    @cart = @line_item.cart
+    if @line_item.quantity > 1
+      @line_item.quantity-=1
+    else
+      @line_item.destroy
+    end
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: "Line item was successfully destroyed." }
+      format.html { redirect_to store_index_url,
+                                notice: 'Product deleted' }
       format.json { head :no_content }
     end
+
   end
 
   private
@@ -72,6 +77,6 @@ class LineItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def line_item_params
-      params.require(:line_item).permit(:product_id, :cart_id)
+      params.require(:line_item).permit(:product_id)
     end
 end
