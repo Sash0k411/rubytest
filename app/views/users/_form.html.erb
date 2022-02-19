@@ -19,9 +19,15 @@
     </div>
 
     <div class="field">
+      <%= form.label :current_password,  'Current Password:' %>
+      <%= form.password_field :current_password %>
+    </div>
+
+    <div class="field">
       <%= form.label :password, 'Password:' %>
       <%= form.password_field :password, size: 40 %>
     </div>
+
     <div class="field">
       <%= form.label :password_confirmation, 'Confirm:' %>
       <%= form.password_field :password_confirmation,
