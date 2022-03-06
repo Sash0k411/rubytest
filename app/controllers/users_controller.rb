@@ -46,7 +46,6 @@ class UsersController < ApplicationController
           format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
           format.json { render :show, status: :ok, location: @user }
        else
-          format.html { redirect_to users_url, notice: 'Dolbaeb' }
           format.html { render :edit }
           format.json { render json: @user.errors, status: :unprocessable_entity }
        end
@@ -67,6 +66,18 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: exception.message
   end
 
+  def update_password
+    @user = User.find(params[:id])
+    current_password = user_params[:current_password]
+    if current_password.present? && @user.authenticate(current_password)
+      @user.update(user_params)
+      redirect_to users_url, notice: "Password #{@user.name}'s was successfully updated."
+    else
+      redirect_to users_url, notice: 'Current password not valid'
+    end
+  end
+
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -75,6 +86,8 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :current_password)#:new_password,
+    params.require(:user).permit(:name, :password, :password_confirmation, :current_password)
   end
+
+
 end
