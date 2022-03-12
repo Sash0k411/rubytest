@@ -1,26 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-Product.delete_all
-# . . .
-Product.create!(title: 'Build Chatbot Interactions',
-  description:
-    %{<p>
-    <em>Responsive, Intuitive Interfaces with Ruby</em>
-    The next step in the evolution of user interfaces is here.
-    Chatbots let your users interact with your service in their
-    own natural language. Use free and open source tools along
-    with Ruby to build creative, useful, and unexpected interactions
-    for users. Take advantage of the Lita framework’s step-by-step
-    implementation strategy to simplify bot development and testing.
-    From novices to experts, chatbots are an area in which everyone
-    can participate. Exercise your creativity by creating chatbot
-    skills for communicating, information, and fun.
-    </p>},
-  image_url: 'dpchat.jpg',
-  price: 20.00)
-# . . .
+images = [
+  "https://www.logobook.ru/make_nimage.php?uid=15027580",
+  "https://www.moscowbooks.ru/image/book/476/orig/i476691.jpg?cu=20180101000000",
+  "https://images-na.ssl-images-amazon.com/images/I/71FsXsYXGCL.jpg",
+  "http://harrypottercollectables.com/wp-content/uploads/2020/08/harry-potter-deathly-hallows-first-print-hardback-4-scaled.jpg",
+  "http://harrypottercollectables.com/wp-content/uploads/2021/06/IMG_8304-scaled.jpg"
+]
+
+images.each_with_index do |image, index|
+  product_params = {
+    title: "Book #{index + 1}",
+    description: "test",
+    price: 100 * (index + 1),
+    image_url: image,
+    discount: 0
+  }
+  product = Product.new(product_params)
+  product.save!
+end
+

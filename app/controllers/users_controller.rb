@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :update_password]
 
   # GET /users
   # GET /users.json
@@ -67,13 +67,12 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    @user = User.find(params[:id])
     current_password = user_params[:current_password]
     if current_password.present? && @user.authenticate(current_password)
       @user.update(user_params)
       redirect_to users_url, notice: "Password #{@user.name}'s was successfully updated."
     else
-      redirect_to users_url, notice: 'Current password not valid'
+      redirect_to edit_user_path(@user.id), notice: 'Current password not valid'
     end
   end
 
