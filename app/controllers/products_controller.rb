@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-
+  before_action :authorize, only: %i[create update]
   # GET /products or /products.json
   def index
     @products = Product.all.order(:title)
@@ -21,8 +21,7 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
-
+    @product = Product.new(product_params.merge({"user_id" => current_user.id}))
     respond_to do |format|
       if @product.save
         format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
@@ -79,7 +78,7 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price, :discount)
+      params.require(:product).permit(:title, :description, :image_url, :price, :discount).to_hash
     end
 end
 

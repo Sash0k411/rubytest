@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :update_password]
-
+  attr_accessor :users
   # GET /users
   # GET /users.json
   def index
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url, notice: "User #{@user.name} was successfully created." }
@@ -40,9 +39,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
+     respond_to do |format|
        if
-          @user.update(user_params)
+         @user.update(user_params)
+         if @user.admin == true
+           @user.update({admin: false})
+         else
+           @user.update({admin: true})
+         end
           format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
           format.json { render :show, status: :ok, location: @user }
        else
@@ -75,7 +79,6 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user.id), notice: 'Current password not valid'
     end
   end
-
 
   private
   # Use callbacks to share common setup or constraints between actions.
