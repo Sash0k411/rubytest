@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+  get 'categories/show'
+  get 'categories/edit'
   get 'admin' => 'admin#index'
   controller :sessions do
     get 'login' => :new
@@ -8,6 +11,7 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
 
+  resources :categories
 
   resources :products do
     get :who_bought, on: :member
@@ -17,14 +21,15 @@ Rails.application.routes.draw do
     put :update_password, on: :member
   end
 
-  resources :support_requests, only: [ :index, :update ]
 
+  resources :support_requests, only: [ :index, :update ]
 
   scope '(:locale)' do
     resources :users
     resources :orders
     resources :line_items
     resources :carts
+    resources :categories
     root 'store#index', as: 'store_index'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

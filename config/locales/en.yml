@@ -23,6 +23,7 @@ en:
       questions:   "Questions"
       news:        "News"
       contact:     "Contact"
+      category:    "Category"
 
   carts:
     cart:
