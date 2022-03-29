@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :update_password]
-  attr_accessor :users
   # GET /users
   # GET /users.json
   def index
