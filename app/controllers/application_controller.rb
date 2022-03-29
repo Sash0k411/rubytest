@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
+  attr_reader :current_user
   before_action :authorize, :set_i18n_locale_from_params
 
   protected
 
   def authorize
-    unless User.find_by(id: session[:user_id])
+    @current_user = User.find_by(id: session[:user_id])
+    unless @current_user
       redirect_to login_url, notice: "Please log in"
     end
   end
