@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :show, only:[:destroy]
 
+  
   def index
     @categories = Category.all
   end
@@ -47,6 +48,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category).permit(:name)
