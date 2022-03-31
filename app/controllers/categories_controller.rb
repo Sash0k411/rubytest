@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :show, only:[:destroy]
+  before_action :show, only: %i[ show edit update destroy ]
 
   
   def index
