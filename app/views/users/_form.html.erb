@@ -21,20 +21,15 @@
         <%= form.text_field :name, size: 40 %>
       </div>
 
-      <div class="actions">
-        <%= form.submit "Change username" %>
-      </div>
-    <% end %>
-
-  <%=form_with(model: user, local: true) do |form| %>
 
       <div class="checkbox">
         <%= form.label :admin, "Admin?" %>
         <%= form.check_box :admin %>
       </div>
 
+
       <div class="actions">
-        <%= form.submit "Change admins rights" %>
+        <%= form.submit "Change user" %>
       </div>
 
     <% end %>
