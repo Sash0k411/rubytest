@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :show, only: %i[ show edit update destroy ]
-
-  
+  attr_accessor :category
   def index
     @categories = Category.all
   end
@@ -54,6 +53,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name).to_hash
   end
 end

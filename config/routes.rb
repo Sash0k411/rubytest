@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'categories/index'
-  get 'categories/show'
-  get 'categories/edit'
   get 'admin' => 'admin#index'
   controller :sessions do
     get 'login' => :new
@@ -23,7 +20,7 @@ Rails.application.routes.draw do
 
 
   resources :support_requests, only: [ :index, :update ]
-
+  
   scope '(:locale)' do
     resources :users
     resources :orders

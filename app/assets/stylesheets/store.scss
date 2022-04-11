@@ -7,8 +7,10 @@
   ul.catalog {
     border-top: solid 0.250em;
     list-style: none;
-    padding: 0;
+    padding: 5em;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
     li {
       padding: 1em;
       margin: 0;

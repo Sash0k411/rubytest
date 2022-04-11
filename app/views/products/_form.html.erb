@@ -10,39 +10,40 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group carts">
+    <div class="field form-control form-control-lg">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <div class="field form-control form-control-lg">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+    <div class="field form-control form-control-lg">
+      <%= form.label :image_url %>
+      <%= form.text_field :image_url %>
+    </div>
 
-  <div class="field">
-    <%= form.label :image_url %>
-    <%= form.text_field :image_url %>
-  </div>
+    <div class="field form-control form-control-lg">
+      <%= form.label :price %>
+      <%= form.text_field :price %>
+    </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
+    <div class="field form-control form-control-lg">
+      <%= form.label :discount %>
+      <%= form.text_field :discount %>
+    </div>
 
-  <div class="field">
-    <%= form.label :discount %>
-    <%= form.text_field :discount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.all, :name ,:name  %>
-  </div>
+    <div class="field form-control form-control-lg  ">
+      <%= form.label :category_id %>
+      <%= form.collection_select :category_id, Category.all, :name ,:name  %>
+    </div>
 
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>

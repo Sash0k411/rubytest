@@ -1,3 +1,6 @@
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cerulean/bootstrap.min.css" integrity="sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" crossorigin="anonymous">
+</head>
 <% if notice.present? %>
   <aside id="notice"><%= notice %></aside>
 <% end %>
@@ -22,19 +25,19 @@
           <%= truncate(strip_tags(product.description), length: 80) %>
         </p>
         <p>
-          <%= product.category_id %>
+          <%= product.category.name %>
         </p>
       </td>
       <td class="actions">
         <ul>
-          <li><%= link_to 'Show', product %></li>
-          <li><%= link_to 'Edit', edit_product_path(product) %></li>
-          <li>
+          <div class = "btn btn-success"><li><%= link_to 'Show', product %></li></div>
+          <div class = "btn btn-success"><li><%= link_to 'Edit', edit_product_path(product) %></li></div>
+          <div class = "btn btn-danger"><li>
             <%= link_to 'Destroy',
                          product,
                          method: :delete,
                          data: { confirm: 'Are you sure?' } %>
-         </li>
+          </li></div>
         </ul>
       </td>
     </tr>
