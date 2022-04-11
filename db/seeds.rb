@@ -47,7 +47,7 @@ categories_names.each do |name|
 end
 
 
-category = Category.all
+categories = Category.all
 
 images.each_with_index do |image, index|
   product_params = {
@@ -56,7 +56,7 @@ images.each_with_index do |image, index|
     price: 100 * (index + 1),
     image_url: image,
     discount: 0.1 * (index + 0.1),
-    category_id: category.sample.id
+    category_id: categories.sample.id
 
   }
 
