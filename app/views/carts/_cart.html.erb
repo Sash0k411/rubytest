@@ -17,14 +17,15 @@
     <div class="actions">
         <%= button_to t('.empty'), cart,
                     method: :delete,
-                    data: { confirm: 'Are you sure?' } %>
+                    data: { confirm: 'Are you sure?' },
+                    class: 'btn btn-danger'%>
 
         <% unless current_page?(:controller => 'orders', :action => 'new') %>
 
         <%= button_to t('.checkout'), new_order_path(locale: I18n.locale),
                       method: :get,
-                      class: "checkout" %>
+                      class: 'btn btn-success active'%>
       <% end %>
     </div>
-  <%end %>
+  <% end %>
 </article>
