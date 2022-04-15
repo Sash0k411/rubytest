@@ -1,31 +1,38 @@
 <article>
   <% if notice %>
-    <aside id="notice"><%= notice %></aside>
+    <aside class="alert alert-success"><%= notice %></aside>
   <% end %>
   <% unless cart.line_items.empty? %>
     <h2><%= t('.title') %></h2>
-    <table>
-      <%= render(cart.line_items) %>
-      <tfoot>
-      <tr>
-        <th colspan="2">Total:</th>
-        <td class="price"><%= number_to_currency(cart.total_price) %></td>
-      </tr>
-      </tfoot>
-    </table>
-
-    <div class="actions">
-        <%= button_to t('.empty'), cart,
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' },
-                    class: 'btn btn-danger'%>
-
-        <% unless current_page?(:controller => 'orders', :action => 'new') %>
-
-        <%= button_to t('.checkout'), new_order_path(locale: I18n.locale),
-                      method: :get,
-                      class: 'btn btn-success active'%>
-      <% end %>
+    <div class="table-responsive">
+      <table class="table activitites">
+        <%= render(cart.line_items) %>
+        <tfoot>
+          <div class="d-flex px-3 pr-md-5 py-1 subtotal">
+            <tr>
+              <th class="px-4">Total:</th>
+              <td class="h5 font-weight-bold px-md-2"><%= number_to_currency(cart.total_price) %></td>
+            </tr>
+          </div>
+        </tfoot>
+      </table>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <%= button_to t('.empty'), cart,
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: 'btn btn-danger active'%>
+        </div>
+          <% unless current_page?(:controller => 'orders', :action => 'new') %>
+        <div class="col-sm">
+          <%= button_to t('.checkout'), new_order_path(locale: I18n.locale),
+                        method: :get,
+                        class: 'btn btn-success active'%>
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
 </article>
