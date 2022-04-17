@@ -7,8 +7,10 @@
   ul.catalog {
     border-top: solid 0.250em;
     list-style: none;
-    padding: 0;
+    padding: 5em;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
     li {
       padding: 1em;
       margin: 0;
@@ -35,9 +37,7 @@
         display: inline;
       }
       input[type="submit"] {
-        background-color: #282;
-        border-radius: 0.354em;
-        border: solid thin #141;
+
         color: white;
         font-size: 1em;
         padding: 0.354em 1em;
