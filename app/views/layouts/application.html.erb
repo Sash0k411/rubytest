@@ -69,11 +69,9 @@
           <a href="/contact" class="btn btn-link d-block">
             <i class="fas fa-chart-line fa-fw me-3"></i><span><%= t('.contact') %></span>
           </a>
-          <ul class="form-control" >
-            <% Category.all.each do |category| %>
-              <li><%= link_to category.name, category %></li>
-            <% end %>
-          </ul>
+          <% Category.all.each do |category| %>
+            <i class="btn btn-link d-block fas fa-chart-line fa-fw me-3"><%= link_to category.name, category %></i>
+          <% end %>
         </div>
       </nav>
       <main class='<%= controller.controller_name %>'>
