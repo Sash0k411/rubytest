@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :show, only: %i[ show edit update destroy ]
+  before_action :show, only: %i[ show edit update destroy]
+
 
   def index
     @categories = Category.all
@@ -7,6 +8,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @items = @category.products
   end
 
   def new

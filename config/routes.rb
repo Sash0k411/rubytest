@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
 
+
+
   resources :categories
+
 
   resources :products do
     get :who_bought, on: :member
