@@ -30,17 +30,6 @@
   <div>
       <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
 
-      <% if @current_user.try("admin?") %>
-        <nav class="navbar navbar-text">
-          <form class = "form-inline">
-            <a href = "/orders" class="btn btn-link">Orders</a>
-            <a href = "/products" class="btn btn-link">Products</a>
-            <a href = "/users" class="btn btn-link">Users</a>
-            <a href = "/categories" class="btn btn-link">Categories</a>
-            <td><%= button_to 'Logout', logout_path, method: :delete, class: "btn btn-link"%></td>
-          </form>
-        </nav>
-      <% end %>
       </div>
       <h1><%= @page_title %></h1>
 

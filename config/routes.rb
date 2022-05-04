@@ -9,9 +9,25 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
 
+  namespace :admin do
+    resources :categories
+
+    resources :products do
+      get :who_bought, on: :member
+    end
+
+    resources :users
+
+    resources :users do
+      put :update_password, on: :member
+    end
+
+    resources :orders
+
+
+  end
 
   resources :categories
-
 
   resources :products do
     get :who_bought, on: :member
@@ -21,11 +37,9 @@ Rails.application.routes.draw do
     put :update_password, on: :member
   end
 
-
   resources :support_requests, only: [ :index, :update ]
   
   scope '(:locale)' do
-    resources :users
     resources :orders
     resources :line_items
     resources :carts

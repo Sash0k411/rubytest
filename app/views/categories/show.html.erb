@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
     <% cache @products do %>
-      <% @items.each do |product| %>
+      <% @products.each do |product| %>
         <% cache product do %>
           <div class="container bg-light rounded" style="width: 20rem;">
             <li class="list-group list-group-flush ">
@@ -35,9 +35,4 @@
   </div>
 </div>
 
-<% if @current_user.try("admin?") %>
-  <div class="form-control">
-    <%= link_to 'Edit', edit_category_path(@category) %> |
-    <%= link_to 'Back', categories_path %>
-  </div>
-<%end%>
+

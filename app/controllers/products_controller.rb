@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
   before_action :authorize, only: %i[create update index]
-  
+
 
   # GET /products or /products.json
   def index
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
 
         @products = Product.all.order(:title)
         ActionCable.server.broadcast 'products',
-           html: render_to_string('store/index', layout: false)
+                                     html: render_to_string('store/index', layout: false)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -73,14 +73,13 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price, :discount, :category_id).to_hash
-    end
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:title, :description, :image_url, :price, :discount, :category_id).to_hash
+  end
 end
-
