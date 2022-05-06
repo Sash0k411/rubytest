@@ -9,7 +9,7 @@ module Admin
 
     def show
       @category = Category.find(params[:id])
-      @items = @category.products
+      @books = @category.products
     end
 
     def new

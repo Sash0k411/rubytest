@@ -16,7 +16,7 @@
               <%= sanitize(product.description) %>
             </p>
             <p class="list-group-item">
-              <%= link_to product.category.name, product %>
+              <%= link_to product.category.name %>
             </p>
             <div class="price list-group-item">
               <%= number_to_currency(product.price_with_discount) %>
