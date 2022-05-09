@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit]
 
   # GET /orders
   # GET /orders.json
@@ -36,38 +36,14 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
 
         ChargeOrderJob.perform_later(@order,pay_type_params.to_h)
-        format.html { redirect_to store_index_url(locale: I18n.locale),
-                                  notice: I18n.t('.thanks') }
-        format.html { redirect_to store_index_url(locale: I18n.locale), notice: I18n.t('thanks') }
-        format.json { render :show, status: :created, location: @order }
+        format.html { redirect_to store_index_url, notice:
+          'Thank you for your order.' }
+        format.json { render :show, status: :created,
+                             location: @order }
       else
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
-  def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /orders/1
-  # DELETE /orders/1.json
-  def destroy
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

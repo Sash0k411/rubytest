@@ -1,0 +1,25 @@
+<% if notice.present? %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<div class="card">
+  <div class="card-body">
+    <p>
+      <strong>Name:</strong>
+      <%= @category.name %>
+    </p>
+
+    <p>
+      <strong>Created:</strong>
+      <%= @category.created_at %>
+    </p>
+
+    <p>
+      <strong>Updated:</strong>
+      <%= @category.updated_at %>
+    </p>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_admin_category_path %> |
+<%= link_to 'Back', admin_categories_path %>

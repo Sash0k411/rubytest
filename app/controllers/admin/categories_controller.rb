@@ -1,6 +1,6 @@
 module Admin
   class CategoriesController < ApplicationController
-    before_action :show, only: %i[ show edit update destroy]
+    before_action :set_category, only: %i[ show edit update destroy]
 
 
     def index
@@ -9,7 +9,6 @@ module Admin
 
     def show
       @category = Category.find(params[:id])
-      @books = @category.products
     end
 
     def new
@@ -23,7 +22,7 @@ module Admin
       @category = Category.new(category_params)
         respond_to do |format|
           if @category.save
-            format.html { redirect_to categories_url, notice: "Category #{@category.name} was successfully created." }
+            format.html { redirect_to admin_categories_path, notice: "Category #{@category.name} was successfully created." }
             format.json { render :show, status: :created, location: @category }
           else
             format.html { render :new }
@@ -35,7 +34,7 @@ module Admin
     def update
       respond_to do |format|
         if @category.update(category_params)
-          format.html { redirect_to categories_url, notice: "Category #{@category.name} was successfully updated." }
+          format.html { redirect_to admin_categories_path, notice: "Category #{@category.name} was successfully updated." }
         else
           format.html { render :edit }
         end
@@ -45,7 +44,7 @@ module Admin
     def destroy
       @category.destroy
         respond_to do |format|
-         format.html { redirect_to categories_url, notice: "Category #{@category.name} was successfully deleted." }
+         format.html { redirect_to admin_categories_path, notice: "Category #{@category.name} was successfully deleted." }
         end
     end
 

@@ -16,13 +16,13 @@
               <%= sanitize(product.description) %>
             </p>
             <p class="list-group-item">
-              <%= link_to product.category.name %>
+              <%= link_to product.category.name, product.category %>
             </p>
             <div class="price list-group-item">
               <%= number_to_currency(product.price_with_discount) %>
             </div>
             <div class="card-footer">
-              <%= button_to t('.add_html'), line_items_path(product_id: product, locale: I18n.locale),
+              <%= button_to "Add to Cart", line_items_path(product_id: product),
                             remote: true, class: 'btn btn-success active'%>
 
             </div>
