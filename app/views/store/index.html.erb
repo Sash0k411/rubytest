@@ -4,31 +4,22 @@
 
 <h1><%= t('.title_html') %></h1>
 
-<ul class="catalog">
-  <% cache @products do %>
-    <% @products.each do |product| %>
-      <% cache product do %>
-        <div class="container bg-light rounded" style="width: 20rem;">
-          <li class="list-group list-group-flush ">
-            <%= image_tag(product.image_url, size: "150") %>
-            <h2><%= product.title %></h2>
-            <p class="list-group-item">
-              <%= sanitize(product.description) %>
-            </p>
-            <p class="list-group-item">
-              <%= product.category.name %>
-            </p >
-            <div class="price list-group-item">
-             <%= number_to_currency(product.price_with_discount) %>
-            </div>
-            <div class="card-footer">
-              <%= button_to t('.add_html'), line_items_path(product_id: product, locale: I18n.locale),
-                            remote: true, class: 'btn btn-success active'%>
+<br>
 
-            </div>
-          </li>
-        </div>
-        <% end %>
-      <% end %>
-    <% end %>
-</ul>
+<div class="row">
+  <div class="col">
+    <%= link_to "По цене", "?sort=price", class: "btn btn-dark"%>
+  </div>
+
+  <div class="col">
+    <%= link_to "По размеру скидки", "?sort=discount", class: "btn btn-dark"%>
+  </div>
+
+  <div class="col">
+    <%= link_to "По алфавиту", "?sort=title", class: "btn btn-dark"%>
+  </div>
+</div>
+
+<br>
+
+<%= render partial: "/categories/books", locals: { products: @products } %>

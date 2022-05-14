@@ -1,0 +1,26 @@
+<% if notice.present? %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+<h1>Categories</h1>
+<table class = "table table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th colspan="3">Update category</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <th><%= category.name %></th>
+        <th><%= link_to 'Edit', edit_admin_category_path(category), class: "btn btn-outline-primary" %></th>
+        <th><%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger"%></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New category', new_admin_category_path, class: "btn btn-outline-secondary" %>

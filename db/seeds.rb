@@ -39,7 +39,7 @@ images = [
 @user = User.create(name: "admin", password: "admin", password_confirmation: "admin", admin: true)
 @user = User.create(name: "test", password: "test", password_confirmation: "test", admin: true)
 
-categories_names = ["Testes", "Test1", "Test2", "Test3", "Test4", "Test5"]
+categories_names = ["Testss", "Test1", "Test2", "Test3", "Test4", "Test5"]
 
 categories_names.each do |name|
   Category.create!(name: name)

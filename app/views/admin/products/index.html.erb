@@ -1,0 +1,45 @@
+<% if notice.present? %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+
+<h1>Products</h1>
+<table class="container bg-light rounded">
+  <tfoot>
+    <tr>
+      <td>
+        <%= link_to 'New Product', new_admin_product_path, class: "btn btn-outline-secondary"  %>
+      </td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <% @products.each do |product| %>
+    <tr class="form-control">
+      <td>
+        <%= image_tag(product.image_url, size: "150") %>
+      </td>
+      <td>
+        <h1><%= product.title %></h1>
+        <p>
+          <%= truncate(strip_tags(product.description), length: 80) %>
+        </p>
+        <p>
+          <%= product.category.name %>
+        </p>
+      </td>
+      <td>
+        <div class="row">
+          <div class="col-12">
+            <%= link_to 'Show', admin_product_path(product), class: "btn btn-outline-primary" %>
+            <%= link_to 'Edit', edit_admin_product_path(product), class: "btn btn-outline-primary" %>
+            <%= link_to 'Destroy',
+                        admin_products_path(product),
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' },
+                         class: "btn btn-outline-danger"%>
+          </div>
+        </div>
+      </td>
+    </tr>
+   <% end %>
+ </tbody>
+</table>
