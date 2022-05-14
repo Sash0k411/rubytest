@@ -4,12 +4,5 @@
 
 <h1>Category: <%= @category.name %></h1>
 
-<div class="container">
-  <div class="row">
-      <% @books.each do |product| %>
-        <% render partial: "books", product: product %>
-    <% end %>
-  </div>
-</div>
-
+<%= render partial: "books", locals: { products: @products } %>
 

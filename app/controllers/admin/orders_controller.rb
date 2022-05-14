@@ -1,23 +1,14 @@
 module Admin
   class OrdersController < ApplicationController
-    before_action :ensure_cart_isnt_empty, only: :new
     before_action :set_order, only: [:show, :edit, :update, :destroy]
 
-    # GET /orders
-    # GET /orders.json
     def index
       @orders = Order.all
     end
 
-    # GET /orders/1
-    # GET /orders/1.json
     def show
     end
 
-    # GET /orders/new
-
-    # PATCH/PUT /orders/1
-    # PATCH/PUT /orders/1.json
     def update
       respond_to do |format|
         if @order.update(order_params)
@@ -51,16 +42,5 @@ module Admin
       params.require(:order).permit(:name, :address, :email, :pay_type)
     end
 
-    def pay_type_params
-      if order_params[:pay_type] == "Credit Card"
-        params.require(:order).permit(:credit_card_number, :expiration_date)
-      elsif order_params[:pay_type] == "Check"
-        params.require(:order).permit(:routing_number, :account_number)
-      elsif order_params[:pay_type] == "Purchase Order"
-        params.require(:order).permit(:po_number)
-      else
-        {}
-      end
-    end
   end
 end

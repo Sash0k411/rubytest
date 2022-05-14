@@ -7,7 +7,7 @@
   <tfoot>
     <tr>
       <td>
-        <%= link_to 'New Product', new_admin_product_path %>
+        <%= link_to 'New Product', new_admin_product_path, class: "btn btn-outline-secondary"  %>
       </td>
     </tr>
   </tfoot>
@@ -27,16 +27,17 @@
         </p>
       </td>
       <td>
-        <ul>
-          <div class = "btn btn-success"><li><%= link_to 'Show', admin_product_path(product) %></li></div>
-          <div class = "btn btn-success"><li><%= link_to 'Edit', edit_admin_product_path(product) %></li></div>
-          <div class = "btn btn-danger"><li>
+        <div class="row">
+          <div class="col-12">
+            <%= link_to 'Show', admin_product_path(product), class: "btn btn-outline-primary" %>
+            <%= link_to 'Edit', edit_admin_product_path(product), class: "btn btn-outline-primary" %>
             <%= link_to 'Destroy',
                         admin_products_path(product),
                          method: :delete,
-                         data: { confirm: 'Are you sure?' } %>
-          </li></div>
-        </ul>
+                         data: { confirm: 'Are you sure?' },
+                         class: "btn btn-outline-danger"%>
+          </div>
+        </div>
       </td>
     </tr>
    <% end %>

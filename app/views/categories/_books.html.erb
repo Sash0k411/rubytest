@@ -1,34 +1,29 @@
-<h1>Category: <%= @category.name %></h1>
+<div class="catalog">
+  <div class="container">
+    <div class="row">
+      <% products.each do |product| %>
+        <div class="container bg-light rounded" style="width: 20rem;">
+          <li class="list-group list-group-flush ">
+            <%= image_tag(product.image_url, size: "150") %>
+            <h2><%= product.title %></h2>
+            <p class="list-group-item">
+              <%= sanitize(product.description) %>
+            </p>
+            <p class="list-group-item">
+              <%= link_to product.category.name, product.category %>
+            </p>
+            <div class="price list-group-item">
+              <%= number_to_currency(product.price_with_discount) %>
+            </div>
+            <div class="card-footer">
+              <%= button_to "Add to Cart", line_items_path(product_id: product),
+                            class: 'btn btn-success active'%>
 
-<div class="container">
-  <div class="row">
-    <% cache @products do %>
-      <% @books.each do |product| %>
-        <% cache product do %>
-          <div class="container bg-light rounded" style="width: 20rem;">
-            <li class="list-group list-group-flush ">
-              <%= image_tag(product.image_url, size: "150") %>
-              <h2><%= product.title %></h2>
-              <p class="list-group-item">
-                <%= sanitize(product.description) %>
-              </p>
-              <p class="list-group-item">
-                <%= link_to product.category.name, @category %>
-              </p>
-              <div class="price list-group-item">
-                <%= number_to_currency(product.price_with_discount) %>
-              </div>
-              <div class="card-footer">
-                <%= button_to "Add to Cart", line_items_path(product_id: product),
-                              class: 'btn btn-success active'%>
-
-              </div>
-            </li>
-          </div>
-        <% end %>
+            </div>
+          </li>
+        </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
-
 

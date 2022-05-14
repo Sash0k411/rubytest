@@ -10,25 +10,26 @@
       </ul>
     </div>
   <% end %>
+<div class="mb-3 mt-3">
 
-  <div class="field">
+  <div class=" form-control mb-3 mt-3">
     <%= form.label :name, "Name:"%>
-    <%= form.text_field :name, size: 40 %>
+    <%= form.text_field :name, size: 40, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :address, "Address" %>
-    <%= form.text_area :address, rows: 3, cols: 40 %>
+  <div class=" form-control mb-3 mt-3">
+    <%= form.label :address, "Address:" %>
+    <%= form.text_area :address, rows: 3, cols: 40, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class=" form-control mb-3 mt-3">
     <%= form.label :email, 'Email:' %>
-    <%= form.text_field :email, size: 40 %>
+    <%= form.text_field :email, size: 40, class: "form-control" %>
   </div>
 
-  <div id='pay-type-component'></div>
-
+  <div id='pay-type-component mb-3 mt-3'></div>
+</div>
   <div class="actions">
-    <%= form.submit  %>
+    <%= form.submit%>
   </div>
 <% end %>

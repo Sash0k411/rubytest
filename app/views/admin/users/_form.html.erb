@@ -1,7 +1,7 @@
 <% if notice.present? %>
   <p id="notice"><%= notice %></p>
 <% end %>
-<div class="depot_form">
+<div class="form-control">
   <%= form_with(model: user, local: true) do |form| %>
     <% if user.errors.any? %>
       <div id="error_explanation">
@@ -18,7 +18,7 @@
 
       <div class="field">
         <%= form.label :name, 'Name:' %>
-        <%= form.text_field :name, size: 40 %>
+        <%= form.text_field :name, size: 40, class: "form-control" %>
       </div>
 
 
@@ -38,21 +38,22 @@
 
       <div class="field">
         <%= form.label :current_password,  'Current Password:' %>
-        <%= form.password_field :current_password %>
+        <%= form.password_field :current_password, class: "form-control" %>
       </div>
 
       <div class="field">
         <%= form.label :password, 'Password:' %>
-        <%= form.password_field :password, size: 40 %>
+        <%= form.password_field :password, size: 40, class: "form-control" %>
       </div>
 
       <div class="field">
         <%= form.label :password_confirmation, 'Confirm:' %>
         <%= form.password_field :password_confirmation,
                                 id: :user_password_confirmation,
-                                size: 40 %>
+                                size: 40,
+                                class: "form-control"%>
       </div>
-      <div class="actions">
+      <div class="actions ">
         <%= form.submit "Change password" %>
       </div>
   <% end %>

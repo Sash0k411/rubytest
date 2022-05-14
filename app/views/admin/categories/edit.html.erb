@@ -2,5 +2,10 @@
 
 <%= render 'form'%>
 
-<%= link_to 'Show', admin_category_path(@category) %> |
-<%= link_to 'Back', admin_categories_path %>
+<br>
+<div class="row">
+  <div class="col-12">
+    <%= link_to 'Show', admin_category_path(@category), class: "btn btn-outline-primary" %>
+    <%= link_to 'Back', admin_categories_path, class: "btn btn-outline-primary" %>
+  </div>
+</div>

@@ -2,7 +2,6 @@ module Admin
   class CategoriesController < ApplicationController
     before_action :set_category, only: %i[ show edit update destroy]
 
-
     def index
       @categories = Category.all
     end
@@ -17,7 +16,6 @@ module Admin
 
     def edit
     end
-
 
     def update
       respond_to do |format|
