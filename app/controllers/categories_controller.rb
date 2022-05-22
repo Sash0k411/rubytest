@@ -3,6 +3,8 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    @products_sorted = Product.order(:price => :asc)
+
   end
 
   def show

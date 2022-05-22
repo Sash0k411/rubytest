@@ -64,6 +64,7 @@ class LineItemsController < ApplicationController
     end
   end
 
+
   private
 
     def set_line_item
