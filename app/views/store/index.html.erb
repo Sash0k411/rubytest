@@ -7,19 +7,21 @@
 <br>
 
 <div class="row">
+
   <div class="col">
-    <%= link_to "По цене", "?sort=price", class: "btn btn-dark"%>
+    <%= link_to "По цене",  { sort: :price }, class: "btn btn-outline-secondary" %>
   </div>
 
   <div class="col">
-    <%= link_to "По размеру скидки", "?sort=discount", class: "btn btn-dark"%>
+    <%= link_to "По размеру скидки", { sort: :discount }, class: "btn btn-outline-secondary"  %>
   </div>
 
+
   <div class="col">
-    <%= link_to "По алфавиту", "?sort=title", class: "btn btn-dark"%>
+    <%= link_to "По алфавиту", { sort: :title }, class: "btn btn-outline-secondary"  %>
   </div>
+
 </div>
-
 <br>
 
 <%= render partial: "/categories/books", locals: { products: @products } %>
