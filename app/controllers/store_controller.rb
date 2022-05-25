@@ -6,6 +6,8 @@ class StoreController < ApplicationController
     @products = Product.order(params[:sort]).page params[:page]
   end
 
+  private
+
   def set_locale
     if params[:set_locale]
       redirect_to store_index_url(locale: params[:set_locale])

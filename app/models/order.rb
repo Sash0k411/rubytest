@@ -1,4 +1,5 @@
 require 'pago'
+require 'csv'
 class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
   enum pay_type: {
@@ -43,6 +44,15 @@ class Order < ApplicationRecord
       OrderMailer.received(self).deliver_later
     else
       raise payment_result.error
+    end
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |order|
+        csv << order.attributes.values_at(*column_names)
+      end
     end
   end
 end
