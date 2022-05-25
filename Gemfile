@@ -56,3 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 gem 'i18n-js'
+
+gem "kaminari"
+
+gem "bootstrap-kaminari-views"
