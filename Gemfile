@@ -60,3 +60,7 @@ gem 'i18n-js'
 gem "kaminari"
 
 gem "bootstrap-kaminari-views"
+
+gem "roo"
+
+gem "pry"

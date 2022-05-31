@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   validates :discount, numericality: { greater_than_or_equal_to: 0}
   belongs_to :user, optional: true
   belongs_to :category, optional: true
-  paginates_per 6
+
 
   def price_with_discount
     return self.price if self.discount.nil? || self.discount.zero?

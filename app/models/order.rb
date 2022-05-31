@@ -1,6 +1,8 @@
 require 'pago'
 require 'csv'
 class Order < ApplicationRecord
+  # include SpreadsheetArchitect
+
   has_many :line_items, dependent: :destroy
   enum pay_type: {
     "Check"  => 0,
@@ -51,8 +53,23 @@ class Order < ApplicationRecord
     CSV.generate(options) do |csv|
       csv << column_names
       all.each do |order|
-        csv << order.attributes.values_at(*column_names)
+        order_params = order.attributes
+        order_params["created_at"] = order_params["created_at"].strftime('%Y-%m-%d')
+        order_params["updated_at"] = order_params["updated_at"].strftime('%Y-%m-%d')
+
+        csv << order_params.values_at(*column_names)
       end
     end
   end
+
+  # def spreadsheet_columns
+  #   [
+  #     ['id', :id],
+  #     ['name', :name],
+  #     ['address:', :address],
+  #     ['email:', :email],
+  #     ['created_at:', :created_at],
+  #     ['updated_at', :updated_at]
+  #   ]
+  # end
 end

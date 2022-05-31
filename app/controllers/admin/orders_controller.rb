@@ -4,10 +4,11 @@ module Admin
 
     def index
       @orders = Order.all
+
       respond_to do |format|
         format.html
-        format.csv { send_data @orders.to_csv}
-        format.xls { send_data @orders.to_csv(col_sep: "\t")}
+        format.csv { send_data @orders.to_csv }
+        format.xls { send_data @orders.to_csv(col_sep: "\t") }
       end
     end
 
