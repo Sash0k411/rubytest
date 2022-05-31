@@ -28,3 +28,15 @@
     <% end %>
   </tbody>
 </table>
+
+<br>
+<div class="column">
+  <h5>Download at:</h5>
+  <div class="col-6">
+    <%= link_to "CSV", admin_orders_path(format: "csv"), class: "btn btn-outline-secondary"  %>
+  </div>
+  <br>
+  <div class="col-6">
+    <%= link_to "XLS", admin_orders_path(format: "xls"), class: "btn btn-outline-secondary" %>
+  </div>
+</div>

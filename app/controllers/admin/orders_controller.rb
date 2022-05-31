@@ -1,9 +1,15 @@
 module Admin
   class OrdersController < ApplicationController
-    before_action :set_order, only: [:show, :edit, :update, :destroy]
+    before_action :set_order, only: [:show, :update, :destroy]
 
     def index
       @orders = Order.all
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data @orders.to_csv }
+        format.xls { send_data @orders.to_csv(col_sep: "\t") }
+      end
     end
 
     def show
@@ -30,6 +36,7 @@ module Admin
         format.json { head :no_content }
       end
     end
+
 
     private
     # Use callbacks to share common setup or constraints between actions.

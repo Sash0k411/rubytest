@@ -3,8 +3,10 @@ class StoreController < ApplicationController
   before_action :set_locale
 
   def index
-    @products = Product.order(params[:sort])
+    @products = Product.order(params[:sort]).page params[:page]
   end
+
+  private
 
   def set_locale
     if params[:set_locale]
