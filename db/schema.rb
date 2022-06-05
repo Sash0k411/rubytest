@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_03_28_190600) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_03_28_190600) do
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 2022_03_28_190600) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -64,12 +67,12 @@ ActiveRecord::Schema.define(version: 2022_03_28_190600) do
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "product_id", null: false
+    t.bigint "product_id", null: false
     t.integer "cart_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "quantity", default: 1
-    t.integer "order_id"
+    t.bigint "order_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
@@ -92,17 +95,17 @@ ActiveRecord::Schema.define(version: 2022_03_28_190600) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "discount"
-    t.integer "user_id"
-    t.integer "category_id"
+    t.bigint "user_id"
+    t.bigint "category_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "support_requests", force: :cascade do |t|
-    t.string "email"
-    t.string "subject"
-    t.text "body"
-    t.integer "order_id"
+    t.string "email", comment: "Email of the submitter"
+    t.string "subject", comment: "Subject of their support email"
+    t.text "body", comment: "Body of their support email"
+    t.bigint "order_id", comment: "their most recent order, if applicable"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_support_requests_on_order_id"
