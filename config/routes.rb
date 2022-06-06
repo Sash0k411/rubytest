@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/index'
   get 'admin' => 'admin#index'
   controller :sessions do
     get 'login' => :new
@@ -23,7 +24,9 @@ Rails.application.routes.draw do
     put :update_password, on: :member
   end
   resources :support_requests, only: [ :index, :update ]
-  
+
+  get '/search', to: 'store#search'
+
   scope '(:locale)' do
     resources :orders
     resources :line_items

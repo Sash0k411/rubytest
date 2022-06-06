@@ -19,6 +19,9 @@
     <div>
       <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
     </div>
+
+    <%= render partial: "/shared/search", locals: { products: @products} %>
+
     <h1><%= @page_title %></h1>
     <section class="content">
       <nav class="side_nav">
