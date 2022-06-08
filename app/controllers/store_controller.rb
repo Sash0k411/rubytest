@@ -11,7 +11,7 @@ class StoreController < ApplicationController
       redirect_to store_index_path and return
     else
       @parameter = params[:search].downcase
-      @products = Product.all.where("lower(title) LIKE :search", search: "%#{@parameter}%")
+      @products =  Product.where("lower(title) LIKE :search", search: "%#{@parameter}%")
     end
   end
 

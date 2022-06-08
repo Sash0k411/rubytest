@@ -67,5 +67,3 @@ gem "bootstrap-kaminari-views"
 gem "roo"
 
 gem "pry"
-
-gem 'ransack'
