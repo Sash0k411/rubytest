@@ -6,6 +6,16 @@ class StoreController < ApplicationController
     @products = Product.order(params[:sort]).page params[:page]
   end
 
+  def search
+    if params[:search].blank?
+      redirect_to store_index_path and return
+    else
+      @parameter = params[:search].downcase
+      @products =  Product.where("lower(title) LIKE :search", search: "%#{@parameter}%")
+    end
+  end
+
+
   private
 
   def set_locale
