@@ -1,7 +1,7 @@
 class StoreController < ApplicationController
   include CurrentCart
   before_action :set_locale
-
+  before_action :set_cart
   def index
     @products = Product.order(params[:sort]).page params[:page]
   end

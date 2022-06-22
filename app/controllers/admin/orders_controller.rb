@@ -4,13 +4,13 @@ module Admin
 
     def index
       @orders = Order.all
-
       respond_to do |format|
         format.html
         format.csv { send_data @orders.to_csv }
         format.xls { send_data @orders.to_csv(col_sep: "\t") }
       end
     end
+
 
     def show
     end
@@ -32,11 +32,10 @@ module Admin
     def destroy
       @order.destroy
       respond_to do |format|
-        format.html { redirect_to admin_order_url, notice: 'Order was successfully destroyed.' }
+        format.html { redirect_to admin_orders_url, notice: 'Order was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
-
 
     private
     # Use callbacks to share common setup or constraints between actions.

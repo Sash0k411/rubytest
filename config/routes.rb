@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       put :update_password, on: :member
     end
     resources :orders
+    resources :stats
   end
 
   resources :categories
