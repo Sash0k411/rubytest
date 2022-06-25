@@ -1,14 +1,18 @@
 class StatDecorator
+
+  TIME_FORMAT = '%I:%M %Y-%m-%d'
   def initialize(product)
     @product = product
+    @orders = @product.orders
+    @line_items = @product.line_items
   end
 
   def orders_count
-    @product.orders.count
+    @orders.count
   end
 
   def products_quantity
-    @product.line_items.map{|product| product.quantity}.sum
+    @line_items.map{|product| product.quantity}.sum
   end
 
   def product_title
@@ -16,14 +20,14 @@ class StatDecorator
   end
 
   def orders_created
-    @product.orders.map{|order| order.created_at}.map{|time| time.strftime('%I:%M %Y-%m-%d')}
+    @orders.map{|order| order.created_at}.map{|time| time.strftime(TIME_FORMAT)}.join(', ')
   end
 
   def last_order_created
-    @product.orders.map{|order| order.created_at}.map{|time| time.strftime('%I:%M %Y-%m-%d')}.last
+    @orders.map{|order| order.created_at}.map{|time| time.strftime(TIME_FORMAT)}.last
   end
 
   def max_products_on_order
-    @product.line_items.map{|x| x.quantity}.max
+    @line_items.map{|x| x.quantity}.max
   end
 end
