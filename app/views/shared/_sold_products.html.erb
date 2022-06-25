@@ -1,0 +1,15 @@
+<% @products.each do |product|%>
+  <tr>
+    <th><%= product.line_items.map{|x|x.order}.count %></th>
+    <th><%= product.title %></th>
+    <th><%= product.line_items.map{|x| x.quantity}.sum %></th>
+    <th><%= product.created_at %></th>
+  </tr>
+<% end %>
+
+
+<tr>
+  <th></th>
+</tr>
+
+<!-- Product.second.line_items.map{|x|x.order} -->

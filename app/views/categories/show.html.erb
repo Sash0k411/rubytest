@@ -4,6 +4,6 @@
 
 <h1>Category: <%= @category.name %></h1>
 
-<%= render partial: "books", locals: { products: @products } %>
+<%= render partial: "/shared/books", locals: { products: @products } %>
 
 <%= paginate @products %>

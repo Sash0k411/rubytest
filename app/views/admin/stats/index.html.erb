@@ -1,0 +1,28 @@
+<h1>Orders params:</h1>
+<br>
+<table class = "table table-bordered">
+  <thead class = "thead-light">
+  <tr>
+    <th scope="col">Orders count</th>
+    <th scope="col">Product name</th>
+    <th scope="col">Sold</th>
+    <th scope="col">Purchase time</th>
+    <th scope="col">Last order</th>
+    <th scope="col">Max products on order</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @stats.each do |stat|%>
+    <tr>
+      <th><%= stat.orders_count %></th>
+      <th><%= stat.product_title %></th>
+      <th><%= stat.products_quantity %></th>
+      <th><%= stat.orders_created %></th>
+      <th><%= stat.last_order_created %></th>
+      <th><%= stat.max_products_on_order %></th>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
