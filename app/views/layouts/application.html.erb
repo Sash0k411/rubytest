@@ -16,12 +16,12 @@
 
   </head>
   <body>
-    <div>
+    <div class="navbar-brand">
       <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
     </div>
-
-    <%= render partial: "/shared/search"%>
-
+    <div>
+      <%= render partial: "/shared/search"%>
+    </div>
     <h1><%= @page_title %></h1>
     <section class="content">
       <nav class="side_nav">

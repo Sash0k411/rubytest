@@ -16,13 +16,31 @@
     <%= link_to "По размеру скидки", { sort: :discount }, class: "btn btn-outline-secondary"  %>
   </div>
 
-
   <div class="col">
     <%= link_to "По алфавиту", { sort: :title }, class: "btn btn-outline-secondary"  %>
   </div>
 
 </div>
+
 <br>
 
-<%= render partial: "/shared/books", locals: { products: @products } %>
-<%= paginate @products %>
+<div class="row">
+
+  <div class="col">
+    <%= link_to "USD", "/en", class: "btn btn-outline-secondary"  %>
+  </div>
+
+  <div class="col">
+    <%= link_to "Euro", "/eu", class: "btn btn-outline-secondary"  %>
+  </div>
+
+  <div class="col">
+    <%= link_to "Rubles", "/ru", class: "btn btn-outline-secondary"  %>
+  </div>
+
+</div>
+
+<br>
+
+<%= render partial: "/shared/test", locals: { products: @currency } %>
+<%= paginate @currency %>

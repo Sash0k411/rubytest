@@ -10,6 +10,25 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
 
 
+  # def price_on_eur
+  #   url = "https://api.exchangerate.host/latest?base=USD"
+  #   uri = URI(url)
+  #   response = Net::HTTP.get(uri)
+  #   response_obj = JSON.parse(response)
+  #   return self.price_on_eur if self.price.nil? || self.price.zero?
+  #   self.price_with_discount * response_obj["rates"]["EUR"]
+  # end
+  #
+  # def price_on_rub
+  #   url = "https://api.exchangerate.host/latest?base=USD"
+  #   uri = URI(url)
+  #   response = Net::HTTP.get(uri)
+  #   response_obj = JSON.parse(response)
+  #
+  #   return self.price_on_rub if self.price.nil? || self.price.zero?
+  #   self.price_with_discount * response_obj["rates"]["RUB"]
+  # end
+
   def price_with_discount
     return self.price if self.discount.nil? || self.discount.zero?
     self.price - (self.price * self.discount / 100)

@@ -2,8 +2,11 @@ class StoreController < ApplicationController
   include CurrentCart
   before_action :set_locale
   before_action :set_cart
+
   def index
     @products = Product.order(params[:sort]).page params[:page]
+    @currency = Product.includes(:category).map{ |product| CurrencySwitcher.new(product)}
+    @currency = Kaminari.paginate_array(@currency).page(params[:page]).per(6)
   end
 
   def search
