@@ -20,10 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :categories
-  resources :users do
-    put :update_password, on: :member
-  end
-  resources :support_requests, only: [ :index, :update ]
 
   get '/search', to: 'store#search'
 
